@@ -30,11 +30,11 @@ jobs:
         uses: QAInsights/PerfAction@v3.1
         with:
           # jmeter test plan to execute
-          test-plan-path: '.${{ github.workspace }}/loadTest/againstStage.jmx'
+          test-plan-path: '.$GITHUB_WORKSPACE/loadTest/againstStage.jmx'
       - name: Upload Results
         uses: actions/upload-artifact@v2
         with:
           name: jmeter-results
-          path: ${{ github.workspace }}/loadTest/loadtestresult.jtl
+          path: $GITHUB_WORKSPACE/loadTest/loadtestresult.jtl
 
  
