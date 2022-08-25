@@ -19,12 +19,12 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       - name: where are the files?
-          run:|
-            pwd
-            ls
+        run: |
+          pwd
+          ls
       - name: create test_report
-          run:|
-            mkdir $GITHUB_WORKSPACE/test_report
+        run: |
+          mkdir $GITHUB_WORKSPACE/test_report
       - name: PerfAction for JMeter
         # You may pin to the exact commit or the version.
         # uses: QAInsights/PerfAction@f3959d0a69e7f23949add25d7e34a3ae167d6443
@@ -34,8 +34,8 @@ jobs:
           test-plan-path: './loadTest/againstStage.jmx'
           args: "-JoktaUsername dmsAdminUser@mailinator.com -JoktaPassword F$p3TFK9yC^"
       - name: move jtl files to test_report
-          run:|
-            mv *.jtl $GITHUB_WORKSPACE/test_report
+        run: |
+          mv *.jtl $GITHUB_WORKSPACE/test_report
       - name: Upload Results
         uses: actions/upload-artifact@v2
         with:
@@ -43,3 +43,5 @@ jobs:
           #path: result.jtl
           name: test-results
           path: test_report
+
+
