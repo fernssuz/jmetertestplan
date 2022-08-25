@@ -4,12 +4,6 @@ name: JMeter Load Test Plan
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  #push:
-   # branches: [ "main" ]
-  #pull_request:
-   # branches: [ "main" ]
-
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -31,10 +25,11 @@ jobs:
         with:
           # jmeter test plan to execute
           test-plan-path: './loadTest/againstStage.jmx'
+          args: "-Jusername dmsAdminUser@mailinator.com"
       - name: Upload Results
         uses: actions/upload-artifact@v2
         with:
           name: jmeter-results
           path: result.jtl
 
- 
+
