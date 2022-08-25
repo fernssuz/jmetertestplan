@@ -1,3 +1,2 @@
-# JMeter generated Header file
-Authorization	Bearer ${__property(accessToken)}
-Content-Type	application/json
+# JMeter generated Authorization file
+https://chghealthcare.oktapreview.com	${__P(authUser)}	${__P(authPassword)}			BASIC
