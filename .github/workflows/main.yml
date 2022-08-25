@@ -33,17 +33,15 @@ jobs:
         with:
           # jmeter test plan to execute
           test-plan-path: './loadTest/againstStage.jmx'
-          args: "-JoktaUsername dmsAdminUser@mailinator.com -JoktaPassword F$p3TFK9yC^"
+          args: "-JoktaUsername='dmsAdminUser@mailinator.com' -JoktaPassword='F$p3TFK9yC^' -JauthUser='0oapdb3wehsBSNjv60h7' -JauthPassword='Xfxm2tCw3L9DyY-wexwDbrdv4SiJVSuppFr4TsQh'"
       - name: move jtl files to test_report
         run: |
           mv *.jtl $GITHUB_WORKSPACE/test_report     
-          
+
       - name: Upload Results
         uses: actions/upload-artifact@v2
         with:
-          #name: jmeter-results
-          #path: result.jtl
-          name: test-results
+          name: jmeter-results
           path: test_report
 
 
