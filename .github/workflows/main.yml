@@ -31,7 +31,8 @@ jobs:
              # githubjson=`cat $GITHUB_EVENT_PATH`
              # githubjson= 'cat ./loadTest/oktaCredentialV2.json'
              echo $githubjson
-             authUser=`echo $(jq -r '.clientId' <<< "$githubjson")`
+             authUser= 'echo $(jq -r '.clientId' <<< "$githubjson")'
+             echo ${{authUser}}
              authPassword=`echo $(jq -r '.clientSecret' <<< "$githubjson")`
              oktaUsername=`echo $(jq -r '.users.dmsAdminUser.username' <<< "$githubjson")`
              oktaPassword=`echo $(jq -r '.users.dmsAdminUser.password' <<< "$githubjson")`
