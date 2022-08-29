@@ -424,13 +424,13 @@
             <elementProp name="lifecyclableCV" elementType="Argument">
               <stringProp name="Argument.name">lifecyclableCV</stringProp>
               <stringProp name="Argument.value">3</stringProp>
-              <stringProp name="Argument.desc">Content type - Curriculum Vitae (Resume)</stringProp>
+              <stringProp name="Argument.desc">Content type  Curriculum Vitae Resume</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="lifecyclableCVname" elementType="Argument">
               <stringProp name="Argument.name">lifecyclableCVname</stringProp>
               <stringProp name="Argument.value">Curriculum Vitae (Resume)</stringProp>
-              <stringProp name="Argument.desc">Content type - Curriculum Vitae (Resume</stringProp>
+              <stringProp name="Argument.desc">Content type  Curriculum Vitae  Resume</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="requestedstatus" elementType="Argument">
@@ -442,7 +442,7 @@
           </collectionProp>
         </Arguments>
         <hashTree/>
-        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="false">
           <boolProp name="displayJMeterProperties">true</boolProp>
           <boolProp name="displayJMeterVariables">true</boolProp>
           <boolProp name="displaySystemProperties">false</boolProp>
@@ -462,7 +462,7 @@
         </HeaderManager>
         <hashTree/>
       </hashTree>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
