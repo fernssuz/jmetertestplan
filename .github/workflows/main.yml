@@ -24,10 +24,11 @@ jobs:
     #    id: oktaCredentialV2
         env:
           OKTA_CREDENTIALS_V2: ${{ secrets.OKTA_CREDENTIALS_V2 }}
-           echo $OKTA_CREDENTIALS_V2
+     
+           echo "$OKTA_CREDENTIALS_V2"
            authUser= 'echo $(jq -r '.clientId' <<< "$OKTA_CREDENTIALS_V2")'
            echo $authUser
-           echo '$authUser'
+           echo "$authUser"
           #authPassword= $OKTA_CREDENTIALS_V2 | jq -r ".clientSecret"
           #oktaUsername= $OKTA_CREDENTIALS_V2 | jq -r ".users.dmsAdminUser.username"
           #oktaPassword= $OKTA_CREDENTIALS_V2 | jq -r ".users.dmsAdminUser.password"
