@@ -32,7 +32,5 @@ jobs:
            oktaUsername=  echo "$OKTA_CREDENTIALS_V2" | jq -r '.users.dmsAdminUser.username'
            oktaPassword=  echo "$OKTA_CREDENTIALS_V2" | jq -r '.users.dmsAdminUser.password'
  
-      - name: get the json value 
-      - run: 
-            echo "$authUser"
+   
           
