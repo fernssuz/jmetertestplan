@@ -28,10 +28,10 @@ jobs:
         id: oktaCredentialV2  
         run:  |
            content = echo "$OKTA_CREDENTIALS_V2"
-           authUser =  $(content | jq -r '.clientId')
-           authPassword=  $(content| jq -r '.clientSecret')
-           oktaUsername=  $(content | jq -r '.users.dmsAdminUser.username')
-           oktaPassword=  $(content | jq -r '.users.dmsAdminUser.password')
+           authUser =  $(content) | jq -r '.clientId'
+           authPassword=  $(content)| jq -r '.clientSecret')
+           oktaUsername=  $(content) | jq -r '.users.dmsAdminUser.username'
+           oktaPassword=  $(content) | jq -r '.users.dmsAdminUser.password'
            echo "::set-output name=packageJson::$authUser"
       - run: |
           echo "${{steps.oktaCredentialV2.outputs.packageJson}}"
