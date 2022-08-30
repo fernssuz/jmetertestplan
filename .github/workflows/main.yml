@@ -23,7 +23,7 @@ jobs:
         id: oktaCredentialV2
         env:
           OKTA_CREDENTIALS_V2: ${{ secrets.OKTA_CREDENTIALS_V2 }}
-        uses: notiz-dev/github-action-json-property@release
+        #uses: notiz-dev/github-action-json-property@release
         #with: 
          # path: './loadTest/oktaCredentialV2.json'
           #prop_path: './loadTest/oktaCredentialV2.json'
