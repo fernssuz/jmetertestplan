@@ -33,9 +33,10 @@ jobs:
            oktaPassword=  echo "$OKTA_CREDENTIALS_V2" | jq -r '.users.dmsAdminUser.password'
            
       - name: PerfAction for JMeter
-        uses: QAInsights/PerfAction@v3.1
-        with:
-          args: -JoktaUsername=${{ steps.oktaCredentialV2.oktaUsername}}
+        #uses: QAInsights/PerfAction@v3.1
+        #with:
+        run: 
+         echo ${{ steps.oktaCredentialV2.oktaUsername}}
      
    
           
