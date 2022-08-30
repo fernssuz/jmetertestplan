@@ -27,7 +27,7 @@ jobs:
         #with: 
          # path: './loadTest/oktaCredentialV2.json'
           #prop_path: './loadTest/oktaCredentialV2.json'
-      - run: echo display is $OKTA_CREDENTIALS_V2
+      #- run: echo display is $OKTA_CREDENTIALS_V2
        
 
       - name: PerfAction for JMeter
