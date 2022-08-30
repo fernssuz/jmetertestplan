@@ -27,10 +27,10 @@ jobs:
         id: oktaCredentialV2
        
         run:   
-           authUser= cat $OKTA_CREDENTIALS_V2 | jq -r '.clientId'
-           authPassword=  cat $OKTA_CREDENTIALS_V2 | jq -r '.clientSecret'
-           oktaUsername= cat $OKTA_CREDENTIALS_V2 | jq -r '.users.dmsAdminUser.username'
-           oktaPassword= cat $OKTA_CREDENTIALS_V2 | jq -r '.users.dmsAdminUser.password'
+           authUser= echo $OKTA_CREDENTIALS_V2 | jq -r '.clientId'
+           authPassword=  echo $OKTA_CREDENTIALS_V2 | jq -r '.clientSecret'
+           oktaUsername= echo $OKTA_CREDENTIALS_V2 | jq -r '.users.dmsAdminUser.username'
+           oktaPassword= echo $OKTA_CREDENTIALS_V2 | jq -r '.users.dmsAdminUser.password'
            #authUser= 'echo $(jq -r '.clientId' <<< "$OKTA_CREDENTIALS_V2")'
           
            #authPassword=  cat $OKTA_CREDENTIALS_V2 | jq -r '.clientId'
