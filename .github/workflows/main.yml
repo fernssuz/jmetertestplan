@@ -30,8 +30,7 @@ jobs:
           echo jq '.clientId' $OKTA_CREDENTIALS_V2
           
       # Parse JSON and store in the variable
-      - name: Parse Json
-        id: okta
+
       
    
       - name: PerfAction for JMeter
