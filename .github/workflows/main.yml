@@ -6,6 +6,9 @@ name: JMeter Load Test Plan
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+  
+env:
+  OKTA_CREDENTIALS_V2: ${{ secrets.OKTA_CREDENTIALS_V2 }}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -22,8 +25,7 @@ jobs:
       # Fetch the okta credential and Parse JSON and store in the variable
       - name: fetch the json value
         id: oktaCredentialV2
-        env:
-          OKTA_CREDENTIALS_V2: ${{ secrets.OKTA_CREDENTIALS_V2 }}
+       
         run:   
            authUser= 'echo $(jq -r '.clientId' <<< "$OKTA_CREDENTIALS_V2")'
            authPassword= 'echo $(jq -r '.clientSecret' <<< "$OKTA_CREDENTIALS_V2")'
