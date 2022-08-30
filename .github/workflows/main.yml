@@ -27,7 +27,8 @@ jobs:
       - name: fetch the json value
         id: oktaCredentialV2  
         run:  |
-           echo "authUser" = "$OKTA_CREDENTIALS_V2" | jq -r '.clientId'
+           authUser = echo "$OKTA_CREDENTIALS_V2" | jq -r '.clientId'
+           echo "authUser" =$authUser >> "$GITHUB_ENV"
            authPassword=  echo "$OKTA_CREDENTIALS_V2" | jq -r '.clientSecret'
            oktaUsername=  echo "$OKTA_CREDENTIALS_V2" | jq -r '.users.dmsAdminUser.username'
            oktaPassword=  echo "$OKTA_CREDENTIALS_V2" | jq -r '.users.dmsAdminUser.password'
