@@ -27,7 +27,10 @@ jobs:
         run: 
           echo "$GITHUB. REPOSITORY"
           echo "$OKTA_CREDENTIALS_V2"
-          echo jq '.clientId' $OKTA_CREDENTIALS_V2
+          authUser=$( OKTA_CREDENTIALS_V2 | jq '.clientId' )
+          authPassword=$( OKTA_CREDENTIALS_V2 | jq '.clientSecret' )
+          oktaUsername=$( OKTA_CREDENTIALS_V2 | jq '.users.dmsAdminUser.username' )
+          oktaPassword=$( OKTA_CREDENTIALS_V2 | jq '.users.dmsAdminUser.password' )
           
       # Parse JSON and store in the variable
 
@@ -41,7 +44,7 @@ jobs:
         with:
           # jmeter test plan to execute
           test-plan-path: './loadTest/againstStage.jmx'
-          args: -JoktaUsername=oktaUsername -JoktaPassword=oktaPassword -JauthUser=authUser -JauthPassword=authPassword
+          args: -JoktaUsername=$oktaUsername -JoktaPassword=$oktaPassword -JauthUser=$authUser -JauthPassword=$authPassword
      # - name: move jtl files to test_report
       #  run: |
        #   mv *.jtl $GITHUB_WORKSPACE/test_report     
