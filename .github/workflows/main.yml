@@ -9,8 +9,7 @@ on:
   
 env:
   OKTA_CREDENTIALS_V2: ${{ secrets.OKTA_CREDENTIALS_V2 }}
-                            
-
+  
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -22,20 +21,35 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-  
      # Fetch the okta credential and Parse JSON and store in the variable
-      - name: fetch the json value
-        id: oktaCredentialV2  
+      - name: fetch the secrets
+        id: oktaCredential 
         run:  |
            echo "::set-output name=CLIENT_ID::$(echo "$OKTA_CREDENTIALS_V2" | jq -r '.clientId')"
            echo "::set-output name=CLIENT_SECRET::$(echo "$OKTA_CREDENTIALS_V2" | jq -r '.clientSecret')"
            echo "::set-output name=OKTA_USER::$(echo "$OKTA_CREDENTIALS_V2" | jq -r '.users.dmsAdminUser.username')"
            echo "::set-output name=OKTA_PWD::$(echo "$OKTA_CREDENTIALS_V2" | jq -r '.users.dmsAdminUser.password')"
       - run: |
-          echo ${{steps.oktaCredentialV2.outputs.CLIENT_ID}}
-          echo ${{steps.oktaCredentialV2.outputs.CLIENT_SECRET}}
-          echo ${{steps.oktaCredentialV2.outputs.OKTA_USER}} 
-          echo ${{steps.oktaCredentialV2.outputs.OKTA_PWD}}
+          echo ${{steps.oktaCredential.outputs.CLIENT_ID}}
+          echo ${{steps.oktaCredential.outputs.CLIENT_SECRET}}
+          echo ${{steps.oktaCredential.outputs.OKTA_USER}} 
+          echo ${{steps.oktaCredential.outputs.OKTA_PWD}}
+      
+      # Supply okta credential to jmeter command line
+      - name: PerfAction for JMeter
+        uses: QAInsights/PerfAction@v3.1
+        with:
+           # jmeter test plan to execute
+           test-plan-path: './loadTest/againstStage.jmx'
+           args: -JoktaUsername=${{ steps.oktaCredential.outputs.OKTA_USER }}  -JoktaPassword=${{ steps.oktaCredential.outputs.OKTA_PWD }} -JauthUser=${{ steps.oktaCredential.outputs.CLIENT_ID }} -JauthPassword=${{ steps.oktaCredential.outputs.CLIENT_SECRET }}
+      
+      # Upload the the load test results    
+      - name: Upload Results
+        uses: actions/upload-artifact@v2
+        with:
+           name: jmeter-results
+           path: result.jtl
+
 
 
    
