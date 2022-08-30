@@ -28,7 +28,7 @@ jobs:
         id: oktaCredentialV2  
         run:  |
            authUser =   echo "$OKTA_CREDENTIALS_V2" | jq -r '.clientId'
-           authPassword=  echo "$OKTA_CREDENTIALS_V2" | jq -r '.clientSecret')
+           authPassword=  echo "$OKTA_CREDENTIALS_V2" | jq -r '.clientSecret'
            oktaUsername=   echo "$OKTA_CREDENTIALS_V2"| jq -r '.users.dmsAdminUser.username'
            oktaPassword=  echo "$OKTA_CREDENTIALS_V2" | jq -r '.users.dmsAdminUser.password'
            echo "::set-output name=AUTH_USER::$authUser"
