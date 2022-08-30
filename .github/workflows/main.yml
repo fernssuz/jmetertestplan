@@ -19,20 +19,17 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       
-      # Fetch the okta credential
+      # Fetch the okta credential and Parse JSON and store in the variable
       - name: fetch the json value
         id: oktaCredentialV2
         env:
           OKTA_CREDENTIALS_V2: ${{ secrets.OKTA_CREDENTIALS_V2 }}
         run: 
-          authUser= ${ $OKTA_CREDENTIALS_V2 | jq '.clientId')
-          authPassword= ${ $OKTA_CREDENTIALS_V2 | jq '.clientSecret')
-          oktaUsername= ${ $OKTA_CREDENTIALS_V2 | jq '.users.dmsAdminUser.username')
-          oktaPassword= ${ $OKTA_CREDENTIALS_V2 | jq '.users.dmsAdminUser.password')
-          
-      # Parse JSON and store in the variable
-
-      
+          authUser= ${ $OKTA_CREDENTIALS_V2 | jq -r ".clientId")
+          authPassword= ${ $OKTA_CREDENTIALS_V2 | jq -r ".clientSecret")
+          oktaUsername= ${ $OKTA_CREDENTIALS_V2 | jq -r ".users.dmsAdminUser.username")
+          oktaPassword= ${ $OKTA_CREDENTIALS_V2 | jq -r ".users.dmsAdminUser.password")
+          echo "$authUser"
    
       - name: PerfAction for JMeter
       
