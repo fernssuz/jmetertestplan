@@ -33,7 +33,7 @@ jobs:
            oktaPassword=  echo "$OKTA_CREDENTIALS_V2" | jq -r '.users.dmsAdminUser.password'
            echo "::set-output name=AUTH_USER::$authUser"
       - run: |
-          echo "${{steps.oktaCredentialV2.outputs.AUTH_USER}}"
+          echo ${{steps.oktaCredentialV2.outputs.AUTH_USER}}
            
 
 
