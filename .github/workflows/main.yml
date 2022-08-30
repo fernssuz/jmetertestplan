@@ -27,17 +27,15 @@ jobs:
         #  mkdir $GITHUB_WORKSPACE/test_report  
           
       - name: fetch the json value
+        id: oktaCredentialV2
         env:
           OKTA_CREDENTIALS_V2: ${{ secrets.OKTA_CREDENTIALS_V2 }}
-        run: |
-           # githubjson=`cat $GITHUB_EVENT_PATH`
-           # githubjson= 'cat ./loadTest/oktaCredentialV2.json'
-           echo $githubjson
-           authUser= 'echo $(jq -r '.clientId' <<< "$githubjson")'
-           echo ${{authUser}}
-           authPassword=`echo $(jq -r '.clientSecret' <<< "$githubjson")`
-           oktaUsername=`echo $(jq -r '.users.dmsAdminUser.username' <<< "$githubjson")`
-           oktaPassword=`echo $(jq -r '.users.dmsAdminUser.password' <<< "$githubjson")`
+        uses: notiz-dev/github-action-json-property@release
+        with: 
+          path: 'package.json'
+          prop_path: './loadTest/oktaCredentialV2.json'
+      - run: echo ${{steps.oktaCredentialV2.outputs.prop}} 
+       
 
       - name: PerfAction for JMeter
       
