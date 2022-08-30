@@ -20,18 +20,32 @@ jobs:
       - uses: actions/checkout@v3
       
       # Fetch the okta credential and Parse JSON and store in the variable
-   #   - name: fetch the json value
+      - name: fetch the json value
     #    id: oktaCredentialV2
         env:
           OKTA_CREDENTIALS_V2: ${{ secrets.OKTA_CREDENTIALS_V2 }}
-     
-           echo "$OKTA_CREDENTIALS_V2"
            authUser= 'echo $(jq -r '.clientId' <<< "$OKTA_CREDENTIALS_V2")'
-           echo $authUser
-           echo "$authUser"
-          #authPassword= $OKTA_CREDENTIALS_V2 | jq -r ".clientSecret"
-          #oktaUsername= $OKTA_CREDENTIALS_V2 | jq -r ".users.dmsAdminUser.username"
-          #oktaPassword= $OKTA_CREDENTIALS_V2 | jq -r ".users.dmsAdminUser.password"
+           authPassword= 'echo $(jq -r '.clientSecret' <<< "$OKTA_CREDENTIALS_V2")'
+           oktaUsername= 'echo $(jq -r '.users.dmsAdminUser.username' <<< "$OKTA_CREDENTIALS_V2")'
+           oktaPassword= 'echo $(jq -r '.users.dmsAdminUser.password' <<< "$OKTA_CREDENTIALS_V2")'
    
-     
+      - name: PerfAction for JMeter
+
+          # You may pin to the exact commit or the version.
+          # uses: QAInsights/PerfAction@f3959d0a69e7f23949add25d7e34a3ae167d6443
+        uses: QAInsights/PerfAction@v3.1
+        with:
+          # jmeter test plan to execute
+          test-plan-path: './loadTest/againstStage.jmx'
+          args: -JoktaUsername=$oktaUsername -JoktaPassword=$oktaPassword -JauthUser=$authUser -JauthPassword=$authPassword
+     # - name: move jtl files to test_report
+      #  run: |
+       #   mv *.jtl $GITHUB_WORKSPACE/test_report     
+
+      - name: Upload Results
+        uses: actions/upload-artifact@v2
+        with:
+          name: jmeter-results
+          path: result.jtl
+
 
