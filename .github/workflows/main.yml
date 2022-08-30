@@ -18,13 +18,13 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      - name: where are the files?
-        run: |
-          pwd
-          ls
-      - name: create test_report
-        run: |
-          mkdir $GITHUB_WORKSPACE/test_report  
+    #  - name: where are the files?
+     #   run: |
+      #    pwd
+       #   ls
+      #- name: create test_report
+       # run: |
+        #  mkdir $GITHUB_WORKSPACE/test_report  
           
       - name: fetch the json value
         env:
@@ -48,14 +48,14 @@ jobs:
           # jmeter test plan to execute
           test-plan-path: './loadTest/againstStage.jmx'
           args: -JoktaUsername=oktaUsername -JoktaPassword=oktaPassword -JauthUser=authUser -JauthPassword=authPassword
-      - name: move jtl files to test_report
-        run: |
-          mv *.jtl $GITHUB_WORKSPACE/test_report     
+     # - name: move jtl files to test_report
+      #  run: |
+       #   mv *.jtl $GITHUB_WORKSPACE/test_report     
 
       - name: Upload Results
         uses: actions/upload-artifact@v2
         with:
           name: jmeter-results
-          path: test_report
+          path: testResult.jtl
 
 
