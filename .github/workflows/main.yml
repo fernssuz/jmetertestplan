@@ -31,10 +31,10 @@ jobs:
         env:
           OKTA_CREDENTIALS_V2: ${{ secrets.OKTA_CREDENTIALS_V2 }}
         uses: notiz-dev/github-action-json-property@release
-        with: 
-          path: './loadTest/oktaCredentialV2.json'
+        #with: 
+         # path: './loadTest/oktaCredentialV2.json'
           #prop_path: './loadTest/oktaCredentialV2.json'
-      - run: echo ${{steps.oktaCredentialV2.outputs.prop}} 
+      - run: echo ${{OKTA_CREDENTIALS_V2}} 
        
 
       - name: PerfAction for JMeter
