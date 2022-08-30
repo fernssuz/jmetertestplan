@@ -32,7 +32,6 @@ jobs:
       # Parse JSON and store in the variable
       - name: Parse Json
         id: okta
-        uses: gr2m/get-json-paths-action@v1.x
       
    
       - name: PerfAction for JMeter
