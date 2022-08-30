@@ -32,8 +32,8 @@ jobs:
           OKTA_CREDENTIALS_V2: ${{ secrets.OKTA_CREDENTIALS_V2 }}
         uses: notiz-dev/github-action-json-property@release
         with: 
-          path: 'package.json'
-          prop_path: './loadTest/oktaCredentialV2.json'
+          path: './loadTest/oktaCredentialV2.json'
+          #prop_path: './loadTest/oktaCredentialV2.json'
       - run: echo ${{steps.oktaCredentialV2.outputs.prop}} 
        
 
