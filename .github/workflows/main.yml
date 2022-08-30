@@ -27,6 +27,11 @@ jobs:
       - name: fetch the json value
         id: oktaCredentialV2  
         run:  |
-           authUser= $( echo "$OKTA_CREDENTIALS_V2" | jq -r '.clientId')
+           authUser=  echo "$OKTA_CREDENTIALS_V2" | jq -r '.clientId'
+           
+       
+         # Fetch the okta credential and Parse JSON and store in the variable
+      - name: echo the json value
+        run: 
            echo "$authUser"
-        
+           
