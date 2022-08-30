@@ -32,23 +32,5 @@ jobs:
           #oktaUsername= $OKTA_CREDENTIALS_V2 | jq -r ".users.dmsAdminUser.username"
           #oktaPassword= $OKTA_CREDENTIALS_V2 | jq -r ".users.dmsAdminUser.password"
    
-      - name: PerfAction for JMeter
-      
-        # You may pin to the exact commit or the version.
-        # uses: QAInsights/PerfAction@f3959d0a69e7f23949add25d7e34a3ae167d6443
-        uses: QAInsights/PerfAction@v3.1
-        with:
-          # jmeter test plan to execute
-          test-plan-path: './loadTest/againstStage.jmx'
-          args: -JoktaUsername=$oktaUsername -JoktaPassword=$oktaPassword -JauthUser=$authUser -JauthPassword=$authPassword
-     # - name: move jtl files to test_report
-      #  run: |
-       #   mv *.jtl $GITHUB_WORKSPACE/test_report     
-
-      - name: Upload Results
-        uses: actions/upload-artifact@v2
-        with:
-          name: jmeter-results
-          path: result.jtl
-
+     
 
