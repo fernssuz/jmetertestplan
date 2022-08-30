@@ -31,5 +31,6 @@ jobs:
         id: oktaCredentialV2  
         run:  
            echo '$OKTA_CREDENTIALS_V2' > at.json
-           jq -r '.clientId'' at.json
+           authUser = jq -r '.clientId' at.json
+           echo $authUser
         
