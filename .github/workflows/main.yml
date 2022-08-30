@@ -18,7 +18,8 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-          
+      
+      # Fetch the okta credential
       - name: fetch the json value
         id: oktaCredentialV2
         env:
@@ -26,6 +27,13 @@ jobs:
         run: 
           echo "$GITHUB. REPOSITORY"
           echo "$OKTA_CREDENTIALS_V2"
+          echo jq '.clientId' $OKTA_CREDENTIALS_V2
+          
+      # Parse JSON and store in the variable
+      - name: Parse Json
+        id: okta
+        uses: gr2m/get-json-paths-action@v1.x
+      
    
       - name: PerfAction for JMeter
       
@@ -44,6 +52,6 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: jmeter-results
-          path: testResult.jtl
+          path: result.jtl
 
 
