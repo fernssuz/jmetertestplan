@@ -27,10 +27,15 @@ jobs:
         id: oktaCredentialV2
        
         run:   
-           authUser= 'echo $(jq -r '.clientId' <<< "$OKTA_CREDENTIALS_V2")'
-           authPassword= 'echo $(jq -r '.clientSecret' <<< "$OKTA_CREDENTIALS_V2")'
-           oktaUsername= 'echo $(jq -r '.users.dmsAdminUser.username' <<< "$OKTA_CREDENTIALS_V2")'
-           oktaPassword= 'echo $(jq -r '.users.dmsAdminUser.password' <<< "$OKTA_CREDENTIALS_V2")'
+           authUser= cat $OKTA_CREDENTIALS_V2 | jq -r '.clientId'
+           authPassword=  cat $OKTA_CREDENTIALS_V2 | jq -r '.clientSecret'
+           oktaUsername= cat $OKTA_CREDENTIALS_V2 | jq -r '.users.dmsAdminUser.username'
+           oktaPassword= cat $OKTA_CREDENTIALS_V2 | jq -r '.users.dmsAdminUser.password'
+           #authUser= 'echo $(jq -r '.clientId' <<< "$OKTA_CREDENTIALS_V2")'
+          
+           #authPassword=  cat $OKTA_CREDENTIALS_V2 | jq -r '.clientId'
+           #oktaUsername= 'echo $(jq -r '.users.dmsAdminUser.username' <<< "$OKTA_CREDENTIALS_V2")'
+           #oktaPassword= 'echo $(jq -r '.users.dmsAdminUser.password' <<< "$OKTA_CREDENTIALS_V2")'
    
       - name: PerfAction for JMeter
 
